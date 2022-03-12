@@ -1,0 +1,45 @@
+<body class="fixed-sn light-blue-skin">
+<div *ngIf="afAuth.user | async as user">
+  <header>
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
+      <ul class="nav navbar-nav nav-flex-icons ml-auto">
+        <li class="nav-item mx-2">
+          <a class="nav-link">
+            <i class="fas fa-user mx-2"></i>
+            <span class="clearfix d-none d-sm-inline-block gray-gradient font-weight-bold">
+                                {{user.email[0] | uppercase }}{{user.email[1] | uppercase }}{{user.email[2] | uppercase }}
+                            </span>
+          </a>
+        </li>
+
+        <li class="nav-item mx-2">
+          <button class="btn btn-outline-danger btn-rounded btn-block z-depth-0 waves-effect"
+                  (click)="logout()">
+            Sign out
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="jumbotron text-center z-depth-0 p-4 transparent">
+    <div class="row">
+      <div class="col-md-2 offset-md-1 my-3">
+        <div class="card card-cascade wider">
+
+          <div class="card-body card-body-cascade text-center">
+            <h4 class="card-title"><strong>Hello Housekeeper</strong></h4>
+            <h5 class="blue-text pb-2"><strong>{{ user.email }}</strong></h5>
+            <h5 class="blue-text pb-2"><strong>User ID: {{ user.uid }}</strong></h5>
+            <p class="card-text">Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque
+              laudantium, totam rem aperiam. </p>
+
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</body>
