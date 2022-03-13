@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
+import {PlanComponent} from "./plan/plan.component";
 
 const redirectToLogin = () => redirectUnauthorizedTo(['']);
 
@@ -33,6 +34,14 @@ const routes: Routes = [
     canActivate: [AngularFireAuthGuard],
     data: {
       authGuardPipe: onlyAllowSelf
+    }
+  },
+  {
+    path: 'plan',
+    component: PlanComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: {
+      authGuardPipe: redirectToLogin
     }
   }
 ];

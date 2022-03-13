@@ -12,12 +12,14 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { PlanComponent } from './plan/plan.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    PlanComponent
   ],
   imports: [
     FormsModule,
