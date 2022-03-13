@@ -1,0 +1,31 @@
+<div class="card" style="margin: auto; margin-top:64px; width: 40%; min-width: 400px">
+
+  <h5 class="card-header info-color white-text text-center py-4">
+    <strong>Add Task</strong>
+  </h5>
+
+  <div *ngIf="!submitted" class="card-body px-lg-5 pt-0">
+
+    <form class="md-form form-group" style="color: #757575;">
+
+      <input type="text" name="title" placeholder="Title" class="form-control" required [(ngModel)]="task.title">
+
+      <input type="text" name="description" placeholder="Description" class="form-control" required
+             [(ngModel)]="task.description">
+
+      <select name="room" class="form-control" required [(ngModel)]="task.room_id">
+        <option selected id="mock" value="rr">Room</option>
+        <option *ngFor="let room of rooms;" [value]="room.id">{{room.id}}</option>
+      </select>
+
+      <input type="text" name="Occurrence" placeholder="Occurrence" class="form-control" required
+             [(ngModel)]="task.occurrence">
+
+      <button (click)="saveTask()" class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect">Save</button>
+
+    </form>
+  </div>
+  <div *ngIf="submitted">
+    <button (click)="newTask()" class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect">New task</button>
+  </div>
+</div>
