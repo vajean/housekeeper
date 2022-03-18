@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
       resp = await this.afAuth.signInWithEmailAndPassword(email, password)
 
       const uid = resp.user.uid;
-      this.router.navigate([`/plan`]);
+      this.router.navigate([`/home`]);
 
     } catch (error) {
 

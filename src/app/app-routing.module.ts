@@ -8,10 +8,11 @@ import {AngularFireAuthGuard, redirectUnauthorizedTo, redirectLoggedInTo} from '
 import {PlanComponent} from "./plan/plan.component";
 import {AddTaskComponent} from "./add-task/add-task.component";
 import {TasksComponent} from "./tasks/tasks.component";
+import {AppComponent} from "./app.component";
 
 const redirectToLogin = () => redirectUnauthorizedTo(['']);
 
-const redirectToPlan = () => redirectLoggedInTo(['plan'])
+const redirectToHome = () => redirectLoggedInTo(['home'])
 
 // @ts-ignore
 const onlyAllowSelf = next => map(
@@ -25,19 +26,11 @@ const routes: Routes = [
     component: LoginComponent,
     canActivate: [AngularFireAuthGuard],
     data: {
-      authGuardPipe: redirectToPlan
+      authGuardPipe: redirectToHome
     }
   },
   {
-    path: 'profile/:id',
-    component: ProfileComponent,
-    canActivate: [AngularFireAuthGuard],
-    data: {
-      authGuardPipe: onlyAllowSelf
-    }
-  },
-  {
-    path: 'plan',
+    path: 'home',
     component: PlanComponent,
     canActivate: [AngularFireAuthGuard],
     data: {

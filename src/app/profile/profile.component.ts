@@ -20,4 +20,8 @@ export class ProfileComponent implements OnInit {
     this.authservice.logout();
   }
 
+  nav_tasks() {
+    console.log('bau')
+  }
+
 }
