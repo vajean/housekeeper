@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TasksComponent} from "../tasks/tasks.component";
 import Task from "../models/tasks";
-import Room from "../models/rooms";
 import {TasksService} from "../core/tasks.service";
 import {RoomsService} from "../core/rooms.service";
 import {map} from 'rxjs/operators'

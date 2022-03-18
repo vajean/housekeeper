@@ -1,1 +1,52 @@
-<p>tasks works!</p>
+<app-profile></app-profile>
+<div>
+<table style="margin-top: 128px" class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">TITLE</th>
+      <th scope="col">DESCRIPTION</th>
+      <th scope="col">ROOM</th>
+      <th scope="col">STATUS</th>
+      <th scope="col">FREQUENCY</th>
+      <th scope="col">COMPLETED</th>
+      <th scope="col">KEEPER</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let task of tasks; let i = index"
+      [class.active]="i==currentIndex"
+      (click)="setActiveTask(task, i)">
+    <th scope="row">{{task.title}}</th>
+    <td>{{task.description}}</td>
+    <td>{{task.room_id}}</td>
+    <td>{{task.status}}</td>
+    <td>{{task.occurrence}}</td>
+    <td>{{task.completed}}</td>
+    <td>{{task.keeper}}</td>
+  </tr>
+  </tbody>
+</table>
+</div>
+<div class="pop-form card" *ngIf="currentTask">
+<div class="card-body px-lg-5 pt-0">
+
+  <form class="md-form form-group" style="color: #757575;">
+
+    <input type="text" name="title" placeholder="Title" class="form-control" required [(ngModel)]="currentTask.title">
+
+    <input type="text" name="description" placeholder="Description" class="form-control" required
+           [(ngModel)]="currentTask.description">
+
+    <select name="room" class="form-control" required [(ngModel)]="currentTask.room_id">
+      <option selected id="mock" value="all house">Room</option>
+      <option *ngFor="let room of rooms;" [value]="room.id">{{room.id}}</option>
+    </select>
+
+    <input type="text" name="Occurrence" placeholder="Occurrence" class="form-control" required
+           [(ngModel)]="currentTask.occurrence">
+
+    <button (click)="updateTask();currentTask=null;" class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect">Update</button>
+    <button (click)="currentTask=null;" class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect">Cancel</button>
+  </form>
+</div>
+</div>
