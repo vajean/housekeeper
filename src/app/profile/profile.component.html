@@ -1,91 +1,51 @@
 <body class="fixed-sn light-blue-skin">
+<div class="my-nav">
+  <div>
 
-<ul class="nav nav-tabs mb-3" id="myTab0" role="tablist">
-  <li class="nav-item" role="presentation">
-    <button
-      class="nav-link active"
-      id="home-tab0"
-      data-mdb-toggle="tab"
-      data-mdb-target="#home0"
-      type="button"
-      role="tab"
-      aria-controls="home"
-      aria-selected="true"
-    >
-      Home
-    </button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button (click)="nav_tasks()"
-            class="nav-link"
-            id="profile-tab0"
-            data-mdb-toggle="tab"
-            data-mdb-target="#profile0"
-            type="button"
-            role="tab"
-            aria-controls="profile"
-            aria-selected="false"
-    >
-      Profile
-    </button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button
-      class="nav-link"
-      id="contact-tab0"
-      data-mdb-toggle="tab"
-      data-mdb-target="#contact0"
-      type="button"
-      role="tab"
-      aria-controls="contact"
-      aria-selected="false"
-    >
-      Contact
-    </button>
-  </li>
-</ul>
-<div class="tab-content" id="myTabContent0">
-  <div
-    class="tab-pane fade show active"
-    id="home0"
-    role="tabpanel"
-    aria-labelledby="home-tab0"
-  >
-    Tab 1 content.
+    <ul class="nav nav-tabs mb-3" id="myTab0" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button
+          (click)="nav_home()"
+          [ngClass]="['nav-link', home_tab_visibility]"
+          [routerLink]="['/home']"
+          type="button"
+        >
+          Home
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          (click)="nav_rooms()"
+          [ngClass]="['nav-link', rooms_tab_visibility]"
+          [routerLink]="['/rooms']"
+          type="button"
+        >
+          Rooms
+        </button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button
+          (click)="nav_tasks()"
+          [ngClass]="['nav-link', tasks_tab_visibility]"
+          [routerLink]="['/tasks']"
+          type="button"
+        >
+          Tasks
+        </button>
+      </li>
+    </ul>
   </div>
-  <div class="tab-pane fade" id="profile0" role="tabpanel" aria-labelledby="profile-tab0">
-    Tab 2 content
-  </div>
-  <div class="tab-pane fade" id="contact0" role="tabpanel" aria-labelledby="contact-tab0">
-    Tab 3 content
-  </div>
-</div>
-
-
-
-</body>
-
-<div *ngIf="afAuth.user | async as user">
-  <header>
-    <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
-      <ul class="nav navbar-nav nav-flex-icons ml-auto">
-        <li class="nav-item mx-2">
-          <a class="nav-link">
-            <i class="fas fa-user mx-2"></i>
-            <span class="clearfix d-none d-sm-inline-block gray-gradient font-weight-bold">
+  <div *ngIf="afAuth.user | async as user" style="display: flex; flex-direction: row; height: 0%">
+    <a class="nav-link">
+      <i class="fas fa-user mx-2"></i>
+      <span class="clearfix d-none d-sm-inline-block gray-gradient font-weight-bold">
                                 {{user.email}}
                             </span>
-          </a>
-        </li>
-
-        <li class="nav-item mx-2">
-          <button class="btn btn-outline-danger btn-rounded btn-block z-depth-0 waves-effect"
-                  (click)="logout()">
-            Sign out
-          </button>
-        </li>
-      </ul>
-    </nav>
-  </header>
+    </a>
+    <button class="btn btn-outline-danger btn-rounded waves-effect"
+            (click)="logout()">
+      Sign out
+    </button>
+  </div>
 </div>
-
+</body>
