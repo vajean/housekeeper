@@ -9,6 +9,7 @@ import {PlanComponent} from "./plan/plan.component";
 import {AddTaskComponent} from "./add-task/add-task.component";
 import {TasksComponent} from "./tasks/tasks.component";
 import {AppComponent} from "./app.component";
+import {RoomsComponent} from "./rooms/rooms.component";
 
 const redirectToLogin = () => redirectUnauthorizedTo(['']);
 
@@ -40,6 +41,14 @@ const routes: Routes = [
   {
     path: 'tasks',
     component: TasksComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: {
+      authGuardPipe: redirectToLogin
+    }
+  },
+  {
+    path: 'rooms',
+    component: RoomsComponent,
     canActivate: [AngularFireAuthGuard],
     data: {
       authGuardPipe: redirectToLogin

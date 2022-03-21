@@ -1,5 +1,5 @@
 
-<div class="card" style="margin: auto; margin-top:128px; width: 40%; min-width: 400px">
+<div class="card">
 
   <h5 class="card-header info-color white-text text-center py-4">
     <strong>Add Task</strong>
@@ -23,10 +23,12 @@
              [(ngModel)]="task.occurrence">
 
       <button (click)="saveTask()" class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect">Save</button>
-
+      <button (click)="hideForm()" class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect">Cancel</button>
     </form>
   </div>
   <div *ngIf="submitted">
     <button (click)="newTask()" class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect">New task</button>
+    <button (click)="hideForm()" class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect">Cancel</button>
+
   </div>
 </div>

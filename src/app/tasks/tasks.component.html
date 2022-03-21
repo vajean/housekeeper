@@ -1,51 +1,73 @@
 <div>
-<table style="margin-top: 128px" class="table table-hover">
-  <thead>
+  <div style="display: flex">
+    <button (click)="showForm()" class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect"
+            style="width: auto; margin: auto">Add task
+    </button>
+    <div style="display: flex">
+      <button (click)="taskService.filterWord=room.id" *ngFor="let room of rooms" class="btn btn-outline-info btn-rounded btn-block z-depth-0  waves-effect"
+              style="width: auto; margin: auto">{{room.id | uppercase }}
+      </button>
+    </div>
+  </div>
+  <table style="margin-top: 56px" class="table table-hover">
+    <thead>
     <tr>
-      <th scope="col">TITLE</th>
-      <th scope="col">DESCRIPTION</th>
-      <th scope="col">ROOM</th>
-      <th scope="col">STATUS</th>
-      <th scope="col">FREQUENCY</th>
-      <th scope="col">COMPLETED</th>
-      <th scope="col">KEEPER</th>
+      <th scope="col" (click)="filters('title')">TITLE</th>
+      <th scope="col" (click)="filters('description')">DESCRIPTION</th>
+      <th scope="col" (click)="filters('room_id')">ROOM</th>
+      <th scope="col" (click)="filters('status')">STATUS</th>
+      <th scope="col" (click)="filters('occurrence')">FREQUENCY</th>
+      <th scope="col" (click)="filters('completed')">COMPLETED</th>
+      <th scope="col" (click)="filters('keeper')">KEEPER</th>
     </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let task of tasks; let i = index"
-      [class.active]="i==currentIndex"
-      (click)="setActiveTask(task, i)">
-    <th scope="row">{{task.title}}</th>
-    <td>{{task.description}}</td>
-    <td>{{task.room_id}}</td>
-    <td>{{task.status}}</td>
-    <td>{{task.occurrence}}</td>
-    <td>{{task.completed}}</td>
-    <td>{{task.keeper}}</td>
-  </tr>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+    <tr *ngFor="let task of tasks | filterBy: this.taskService.filterWord; let i = index"
+        [class.active]="i==currentIndex"
+        (click)="setActiveTask(task, i)">
+      <th scope="row">{{task.title}}</th>
+      <td>{{task.description}}</td>
+      <td>{{task.room_id}}</td>
+      <td>{{task.status}}</td>
+      <td>{{task.occurrence}}</td>
+      <td>{{task.completed}}</td>
+      <td>{{task.keeper}}</td>
+    </tr>
+    </tbody>
+  </table>
 </div>
+<!--  TODO: Move Edit form to separate component -->
 <div class="pop-form card" *ngIf="currentTask">
-<div class="card-body px-lg-5 pt-0">
+  <h5 class="card-header info-color white-text text-center py-4">
+    <strong>Edit Task</strong>
+  </h5>
+  <div class="card-body px-lg-5 pt-0">
 
-  <form class="md-form form-group" style="color: #757575;">
+    <form class="md-form form-group" style="color: #757575;">
 
-    <input type="text" name="title" placeholder="Title" class="form-control" required [(ngModel)]="currentTask.title">
+      <input type="text" name="title" placeholder="Title" class="form-control" required [(ngModel)]="currentTask.title">
 
-    <input type="text" name="description" placeholder="Description" class="form-control" required
-           [(ngModel)]="currentTask.description">
+      <input type="text" name="description" placeholder="Description" class="form-control" required
+             [(ngModel)]="currentTask.description">
 
-    <select name="room" class="form-control" required [(ngModel)]="currentTask.room_id">
-      <option selected id="mock" value="all house">Room</option>
-      <option *ngFor="let room of rooms;" [value]="room.id">{{room.id}}</option>
-    </select>
+      <select name="room" class="form-control" required [(ngModel)]="currentTask.room_id">
+        <option selected id="mock" value="all house">Room</option>
+        <option *ngFor="let room of rooms;" [value]="room.id">{{room.id}}</option>
+      </select>
 
-    <input type="text" name="Occurrence" placeholder="Occurrence" class="form-control" required
-           [(ngModel)]="currentTask.occurrence">
+      <input type="text" name="Occurrence" placeholder="Occurrence" class="form-control" required
+             [(ngModel)]="currentTask.occurrence">
 
-    <button (click)="updateTask();currentTask=null;" class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect">Update</button>
-    <button (click)="currentTask=null;" class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect">Cancel</button>
-  </form>
+      <button (click)="updateTask();currentTask=null;"
+              class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect">Update
+      </button>
+      <button (click)="currentTask=null;"
+              class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect">Cancel
+      </button>
+    </form>
+  </div>
 </div>
+
+<div class="pop-form card" *ngIf="this.taskService.task_form_visible==1">
+  <app-add-task></app-add-task>
 </div>

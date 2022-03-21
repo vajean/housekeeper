@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {TasksComponent} from "../tasks/tasks.component";
 import Task from "../models/tasks";
 import {TasksService} from "../core/tasks.service";
 import {RoomsService} from "../core/rooms.service";
@@ -48,6 +47,10 @@ export class AddTaskComponent implements OnInit {
   newTask(): void {
     this.submitted = false;
     this.task = new Task();
+  }
+
+  hideForm(): void {
+    this.taskService.task_form_visible = 0;
   }
 
 }

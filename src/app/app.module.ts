@@ -14,8 +14,10 @@ import { ProfileComponent } from './profile/profile.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PlanComponent } from './plan/plan.component';
-import { TasksComponent } from './tasks/tasks.component';
+import {TasksComponent} from './tasks/tasks.component';
 import { AddTaskComponent } from './add-task/add-task.component';
+import { RoomsComponent } from './rooms/rooms.component';
+import { FilterByPipe } from './filter-by.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { AddTaskComponent } from './add-task/add-task.component';
     ProfileComponent,
     PlanComponent,
     TasksComponent,
-    AddTaskComponent
+    AddTaskComponent,
+    RoomsComponent,
+    FilterByPipe,
   ],
   imports: [
     FormsModule,
