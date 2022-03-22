@@ -8,9 +8,11 @@ export class FilterByPipe implements PipeTransform {
   // @ts-ignore
   transform(objects: any[], filterWord: string): any[] {
     if(objects) {
+      if(filterWord === 'all'){ return objects}
       return objects.filter(object => {
         return object.room_id === filterWord;
       });
+
     }
   }
 

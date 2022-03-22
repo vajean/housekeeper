@@ -19,7 +19,7 @@
         <option *ngFor="let room of rooms;" [value]="room.id">{{room.id}}</option>
       </select>
 
-      <input type="text" name="Occurrence" placeholder="Occurrence" class="form-control" required
+      <input type="number" name="Occurrence" placeholder="Occurrence" class="form-control" required
              [(ngModel)]="task.occurrence">
 
       <button (click)="saveTask()" class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect">Save</button>

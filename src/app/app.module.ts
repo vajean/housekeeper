@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MDBBootstrapModule} from "angular-bootstrap-md";
 import { AngularFireModule} from "@angular/fire/compat";
-import { AngularFirestoreModule } from "@angular/fire/compat/firestore";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { AngularFireAuthGuard } from "@angular/fire/compat/auth-guard";
 import { FormsModule } from "@angular/forms";
@@ -18,6 +17,7 @@ import {TasksComponent} from './tasks/tasks.component';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { RoomsComponent } from './rooms/rooms.component';
 import { FilterByPipe } from './filter-by.pipe';
+import { AddRoomComponent } from './add-room/add-room.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +29,7 @@ import { FilterByPipe } from './filter-by.pipe';
     AddTaskComponent,
     RoomsComponent,
     FilterByPipe,
+    AddRoomComponent,
   ],
   imports: [
     FormsModule,

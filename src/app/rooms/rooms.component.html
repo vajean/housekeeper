@@ -1,1 +1,62 @@
-<p>rooms works!</p>
+<div>
+  <div style="display: flex">
+    <button (click)="showForm()" class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect"
+            style="width: auto;">Add Room
+    </button>
+  </div>
+  <table style="margin-top: 56px" class="table table-hover">
+    <thead>
+    <tr>
+      <th scope="col" (click)="filters('id')">ROOM</th>
+      <th scope="col" (click)="filters('status')">STATUS</th>
+      <th scope="col" (click)="filters('x')">Length</th>
+      <th scope="col" (click)="filters('y')">Width</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let room of rooms;let i = index"
+        [class.active]="i==currentIndex"
+        (click)="setActiveRoom(room, i)">
+      <th scope="row">{{room.id}}</th>
+      <td>{{room.status}}</td>
+      <td>{{room.x}}</td>
+      <td>{{room.y}}</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <!--  TODO: Move Edit form to separate component -->
+  <div class="pop-form card" *ngIf="currentRoom">
+    <h5 class="card-header info-color white-text text-center py-4">
+      <strong>Edit Room</strong>
+    </h5>
+    <div class="card-body px-lg-5 pt-0">
+
+      <form class="md-form form-group" style="color: #757575;">
+
+        <input type="text" name="id" placeholder="Room" class="form-control" required [(ngModel)]="currentRoom.id">
+
+        <input type="number" name="status" placeholder="Status" class="form-control" required
+               [(ngModel)]="currentRoom.status">
+
+        <input type="number" name="x" placeholder="Length" class="form-control" required
+               [(ngModel)]="currentRoom.x">
+
+        <input type="number" name="y" placeholder="Width" class="form-control" required
+               [(ngModel)]="currentRoom.y">
+
+        <button (click)="updateRoom();currentRoom=null;"
+                class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect">Update
+        </button>
+        <button (click)="currentRoom=null;"
+                class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect">Cancel
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="pop-form card" *ngIf="this.roomService.room_form_visible==1">
+    <app-add-room></app-add-room>
+  </div>
+</div>

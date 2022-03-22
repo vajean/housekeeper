@@ -1,12 +1,16 @@
 <div>
-  <div style="display: flex">
+  <div style="display: flex; justify-content: space-between">
     <button (click)="showForm()" class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect"
-            style="width: auto; margin: auto">Add task
+            style="width: auto;" >Add task
     </button>
     <div style="display: flex">
       <button (click)="taskService.filterWord=room.id" *ngFor="let room of rooms" class="btn btn-outline-info btn-rounded btn-block z-depth-0  waves-effect"
               style="width: auto; margin: auto">{{room.id | uppercase }}
       </button>
+      <button (click)="taskService.filterWord='all'" class="btn btn-outline-info btn-rounded btn-block z-depth-0  waves-effect"
+              style="width: auto; margin: auto">X
+      </button>
+
     </div>
   </div>
   <table style="margin-top: 56px" class="table table-hover">
@@ -55,7 +59,7 @@
         <option *ngFor="let room of rooms;" [value]="room.id">{{room.id}}</option>
       </select>
 
-      <input type="text" name="Occurrence" placeholder="Occurrence" class="form-control" required
+      <input type="number" name="Occurrence" placeholder="Occurrence" class="form-control" required
              [(ngModel)]="currentTask.occurrence">
 
       <button (click)="updateTask();currentTask=null;"

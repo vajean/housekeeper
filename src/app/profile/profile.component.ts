@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../core/auth.service';
 import {AngularFireAuth} from "@angular/fire/compat/auth";
+import {Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-profile',
@@ -9,17 +10,27 @@ import {AngularFireAuth} from "@angular/fire/compat/auth";
 })
 export class ProfileComponent implements OnInit {
 
-  home_tab_visibility = 'active';
+  home_tab_visibility = '';
   rooms_tab_visibility = '';
   tasks_tab_visibility = '';
 
   constructor(
     private authservice: AuthService,
     public afAuth: AngularFireAuth,
+    private router: Router
   ) {
   }
 
   ngOnInit(): void {
+    if(this.router.url == '/tasks'){
+      this.nav_tasks()
+    }
+    if(this.router.url == '/rooms'){
+      this.nav_rooms()
+    }
+    if(this.router.url == '/home'){
+      this.nav_home()
+    }
   }
 
   logout() {

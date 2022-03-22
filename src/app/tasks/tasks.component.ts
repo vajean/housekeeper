@@ -4,6 +4,7 @@ import Task from "../models/tasks";
 import {map} from "rxjs/operators";
 import {RoomsService} from "../core/rooms.service";
 import {Router} from "@angular/router";
+import {getAuth} from "@angular/fire/auth";
 
 @Component({
   selector: 'app-tasks',
@@ -17,8 +18,7 @@ export class TasksComponent implements OnInit {
   currentTask = null;
   currentIndex = -1;
   title = '';
-  public task_form_vis = 0;
-
+  date:any;
 
   constructor(public taskService: TasksService,
               private roomService: RoomsService,
@@ -28,8 +28,9 @@ export class TasksComponent implements OnInit {
   ngOnInit(): void {
     this.retrieveTasks();
     this.retrieveRooms();
-
+    this.updateStatus()
   }
+
 
   refreshList(): void {
     this.currentTask = null;
@@ -53,6 +54,11 @@ export class TasksComponent implements OnInit {
       this.tasks = data;
     });
   }
+
+  updateStatus(): void {
+    this.taskService.getOnce()
+  }
+
 
   setActiveTask(task, index): void{
     this.currentTask = task;

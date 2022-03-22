@@ -1,0 +1,32 @@
+
+<div class="card">
+
+  <h5 class="card-header info-color white-text text-center py-4">
+    <strong>Add Room</strong>
+  </h5>
+
+  <div *ngIf="!submitted" class="card-body px-lg-5 pt-0">
+
+    <form class="md-form form-group" style="color: #757575;">
+
+      <input type="text" name="id" placeholder="Room" class="form-control" required [(ngModel)]="room.id">
+
+      <input type="number" name="status" placeholder="Status" class="form-control" required
+             [(ngModel)]="room.status">
+
+      <input type="number" name="x" placeholder="Length" class="form-control" required
+             [(ngModel)]="room.x">
+
+      <input type="number" name="y" placeholder="Width" class="form-control" required
+             [(ngModel)]="room.y">
+
+      <button (click)="saveRoom()" class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect">Save</button>
+      <button (click)="hideForm()" class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect">Cancel</button>
+    </form>
+  </div>
+  <div *ngIf="submitted">
+    <button (click)="newRoom()" class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect">New Room</button>
+    <button (click)="hideForm()" class="btn btn-outline-info btn-rounded btn-block z-depth-0 my-4 waves-effect">Cancel</button>
+
+  </div>
+</div>

@@ -2,8 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import Task from "../models/tasks";
 import {TasksService} from "../core/tasks.service";
 import {RoomsService} from "../core/rooms.service";
-import {map} from 'rxjs/operators'
-import {AngularFirestoreCollection} from "@angular/fire/compat/firestore";
+import {map} from 'rxjs/operators';
+import {getAuth} from "@angular/fire/auth";
+import firebase from "firebase/compat/app";
+import Timestamp = firebase.firestore.Timestamp;
 
 @Component({
   selector: 'app-add-task',
@@ -17,7 +19,7 @@ export class AddTaskComponent implements OnInit {
 
   constructor(
     private taskService: TasksService,
-    private roomService: RoomsService
+    private roomService: RoomsService,
   ) {
   }
 
@@ -38,6 +40,8 @@ export class AddTaskComponent implements OnInit {
   }
 
   saveTask(): void {
+    this.task.status = true;
+    this.task.completed = Date.now()
     this.taskService.create(this.task).then(() => {
       console.log('Task added succesfully!');
       this.submitted = true;

@@ -1,22 +1,21 @@
 import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreCollection } from "@angular/fire/compat/firestore";
 import Task from "../models/tasks";
-import {query, orderBy, limit} from "@angular/fire/firestore";
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
 export class TasksService {
   private dbPath = '/tasks';
-  orderWord='description';
-  filterWord='all house';
+  orderWord='title';
+  filterWord='all';
   tasksRef: AngularFirestoreCollection<Task> = null;
-  sortedTasks: AngularFirestoreCollection<Task> = null;
   task_form_visible: number;
 
   constructor(private db: AngularFirestore) {
-    this.tasksRef = db.collection(this.dbPath);
     this.task_form_visible = 0;
+    this.tasksRef = this.db.collection(this.dbPath);
   }
 
   getAll(): AngularFirestoreCollection<Task> {
@@ -35,6 +34,18 @@ export class TasksService {
   delete(id:string): Promise<void> {
     return this.tasksRef.doc(id).delete();
   }
+
+  getOnce(): void {
+    this.db.collection("tasks")
+    .get()
+    .subscribe(snap => {
+    snap.forEach(doc => {
+    console.log(doc.data()['room_id'])
+  })
+})
+}
+
+
 
 
 }

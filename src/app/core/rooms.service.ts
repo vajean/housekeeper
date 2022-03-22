@@ -7,14 +7,18 @@ import Room from '../models/rooms'
 })
 export class RoomsService {
   private dbPath = '/rooms';
+  orderWord='id';
   roomsRef: AngularFirestoreCollection<Room> = null;
+  room_form_visible: number;
 
   constructor(private db: AngularFirestore) {
-    this.roomsRef = db.collection(this.dbPath);
+    this.room_form_visible = 0;
+    this.roomsRef = this.db.collection(this.dbPath);
   }
 
   getAll(): AngularFirestoreCollection<Room> {
-    return this.roomsRef;
+    return this.db.collection(this.dbPath,
+      ref => ref.orderBy(this.orderWord));
   }
 
   create(room: Room): any {

@@ -8,6 +8,6 @@ export default class Task {
   room_id:string;
   status:boolean;
   occurrence: number;
-  completed:firestore.Timestamp;
+  completed:number;
   keeper:string;
 }
